@@ -1,0 +1,43 @@
+<% /* layout is the default layouts/master set in app.ts */ %>
+<% title = 'Projects' %>
+
+<section class="card">
+  <header class="card-header">
+    <h2>Projects</h2>
+    <a href="/admin/projects/create" class="btn btn-primary">Create Project</a>
+  </header>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>API Key</th>
+        <th style="width: 160px;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (projects && projects.length) { %>
+        <% projects.forEach(p => { %>
+          <tr>
+            <td><%= p.id %></td>
+            <td><%= p.name %></td>
+            <td><code class="code-mono"><%= p.api_key %></code></td>
+            <td>
+              <a href="/admin/projects/<%= p.id %>/edit" class="btn btn-sm">Edit</a>
+              <form method="post" action="/admin/projects/<%= p.id %>/delete" style="display:inline;">
+                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this project?')">
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="4" class="text-center">No projects yet.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</section>

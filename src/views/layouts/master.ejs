@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= typeof title !== 'undefined' ? title : 'Admin Panel' %></title>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <%- style %>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <h1 class="logo">Chat Admin</h1>
+      <nav class="nav">
+        <a href="/admin/projects">Projects</a>
+        <a href="/admin/logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <%- body %>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <%= new Date().getFullYear() %> Chat Service</p>
+    </div>
+  </footer>
+
+  <%- script %>
+</body>
+</html>

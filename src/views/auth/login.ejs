@@ -1,0 +1,21 @@
+<% /* layout is injected by controller via layout: 'layouts/auth' */ %>
+
+<% if (error) { %>
+  <div class="alert alert-error"><%= error %></div>
+<% } %>
+
+<form method="post" action="/admin/login" class="form">
+  <label class="form-label">
+    Email
+    <input type="email" name="email" required class="form-input" />
+  </label>
+  <label class="form-label">
+    Password
+    <input type="password" name="password" required class="form-input" />
+  </label>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+<p class="auth-footer">
+  <a href="/admin/forgot-password">Forgot password?</a>
+</p>

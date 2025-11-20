@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= typeof title !== 'undefined' ? title : 'Admin Auth' %></title>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <%- style %>
+</head>
+<body class="auth-body">
+  <main class="auth-container">
+    <div class="auth-card">
+      <h1 class="auth-title"><%= typeof pageTitle !== 'undefined' ? pageTitle : 'Admin' %></h1>
+      <%- body %>
+    </div>
+  </main>
+  <%- script %>
+</body>
+</html>

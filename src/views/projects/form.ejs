@@ -1,0 +1,27 @@
+<% /* layout is the default layouts/master set in app.ts */ %>
+<% title = project ? 'Edit Project' : 'Create Project' %>
+
+<section class="card">
+  <header class="card-header">
+    <h2><%= project ? 'Edit Project' : 'Create Project' %></h2>
+  </header>
+
+  <form method="post" action="<%= project ? '/admin/projects/' + project.id + '/edit' : '/admin/projects/create' %>" class="form">
+    <label class="form-label">
+      Name
+      <input type="text" name="name" value="<%= project ? project.name : '' %>" required class="form-input" />
+    </label>
+
+    <% if (project) { %>
+      <div class="form-group">
+        <label>API Key</label>
+        <code class="code-mono"><%= project.api_key %></code>
+      </div>
+    <% } %>
+
+    <button type="submit" class="btn btn-primary">
+      <%= project ? 'Update' : 'Create' %>
+    </button>
+    <a href="/admin/projects" class="btn btn-secondary">Cancel</a>
+  </form>
+</section>
