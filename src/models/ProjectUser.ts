@@ -1,3 +1,4 @@
+// src/models/ProjectUser.ts
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../config/db';
 import { Project } from './Project';

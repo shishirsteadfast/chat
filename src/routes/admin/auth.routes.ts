@@ -1,3 +1,4 @@
+// src/routes/admin/auth.routes.ts
 import { Router } from 'express';
 import { AdminAuthController } from '../../controllers/AdminAuthController';
 

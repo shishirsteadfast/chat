@@ -1,3 +1,4 @@
+// src/utils/tokens.ts
 import crypto from 'crypto';
 
 export function generateApiKey() {

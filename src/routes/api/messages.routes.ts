@@ -1,3 +1,4 @@
+// src/routes/api/messages.routes.ts
 import { Router } from 'express';
 import { ChatMessageController } from '../../controllers/ChatMessageController';
 

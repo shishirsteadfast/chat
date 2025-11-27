@@ -1,3 +1,4 @@
+// src/models/PasswordResetToken.ts
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../config/db';
 import { Admin } from './Admin';

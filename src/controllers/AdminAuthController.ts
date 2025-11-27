@@ -1,3 +1,4 @@
+// src/controllers/AdminAuthController.ts
 import { Request, Response } from 'express';
 import { Admin, PasswordResetToken } from '../models';
 import { comparePassword, hashPassword } from '../utils/password';

@@ -1,3 +1,4 @@
+// src/models/index.ts
 import { sequelize } from '../config/db';
 import { Admin } from './Admin';
 import { Project } from './Project';

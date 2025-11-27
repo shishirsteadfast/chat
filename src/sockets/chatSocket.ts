@@ -1,3 +1,4 @@
+// src/sockets/chatSocket.ts
 import { Server } from 'socket.io';
 import { Message } from '../models';
 

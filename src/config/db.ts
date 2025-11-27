@@ -1,3 +1,4 @@
+// src/config/db.ts
 import { Sequelize } from 'sequelize';
 import { env } from './env';
 

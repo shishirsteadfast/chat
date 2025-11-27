@@ -1,3 +1,4 @@
+// src/models/Message.ts
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../config/db';
 import { Conversation } from './Conversation';
