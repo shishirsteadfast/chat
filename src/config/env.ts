@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const env = {
-  port: Number(process.env.PORT || 4000),
+  port: Number(process.env.PORT || 3000),
   sessionSecret: process.env.SESSION_SECRET || 'dev_secret',
 
   db: {
@@ -21,5 +21,5 @@ export const env = {
     from: process.env.MAIL_FROM || 'noreply@example.com',
   },
 
-  appUrl: process.env.APP_URL || 'http://localhost:4000',
+  appUrl: process.env.APP_URL || 'http://localhost:3000',
 };
