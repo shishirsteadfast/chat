@@ -128,20 +128,58 @@ src/
 
 ### Chat API (Authenticated via `X-API-Key` header)
 - Base: `/api`
-- **Users**: `POST /api/users` `{ userId: 123, name: 'Alice' }` (upsert per project).
+- **Users**: `POST /api/users` (upsert per project; auto-generates `external_id` if omitted).
+  ```json
+  {
+    "external_id": 3213212,
+    "display_name": "Done de"
+  }
+  ```
+  Response: `{ "id": 1, "external_id": "generated-uuid-or-provided", "display_name": "Done de" }`.
+
 - **Conversations**:
-  - `POST /api/conversations` `{ name: 'Team Sync', participantIds: [1,2] }`
-  - `GET /api/conversations` (list user's convos).
+  - `POST /api/conversations` (create with participants).
+    ```json
+    {
+      "participant_project_user_ids": [1, 2],
+      "title": "test conversation"
+    }
+    ```
+    Response: `{ "id": 1, "title": "test conversation", "participantIds": [1, 2] }`.
+  - `GET /api/conversations` (list user's conversations; returns array of convos tied to the authenticated project user).
+    - No body required.
+    - Response: `[{ "id": 1, "title": "test conversation", "participant_project_user_ids": [1, 2], "created_at": "..." }, ...]`.
+    - Example cURL:
+      ```bash
+      curl -H "X-API-Key: your_project_key" \
+           http://localhost:3000/api/conversations
+      ```
+
 - **Messages**:
-  - `POST /api/conversations/:id/messages` `{ content: 'Hello!' }`
-  - `GET /api/conversations/:id/messages` (paginated list).
+  - `POST /api/conversations/:id/messages` (send with sender ID).
+    ```json
+    {
+      "project_user_id": 1,
+      "content": "Hello"
+    }
+    ```
+    Response: `{ "id": 1, "project_user_id": 1, "content": "Hello", "created_at": "..." }`.
+  - `GET /api/conversations/:id/messages` (list messages for a conversation; paginated if query params added).
+    - No body required.
+    - Response: `[{ "id": 1, "project_user_id": 1, "content": "Hello", "created_at": "..." }, ...]`.
+    - Example cURL:
+      ```bash
+      curl -H "X-API-Key: your_project_key" \
+           http://localhost:3000/api/conversations/1/messages
+      ```
+
 - **WebSocket**: Connect to `/socket.io`, emit `conversation:join { conversationId: 1 }`, receive `message:new`.
 
 Example cURL (with API key):
 ```bash
 curl -H "X-API-Key: your_project_key" \
      -H "Content-Type: application/json" \
-     -d '{"content":"Hi team!"}' \
+     -d '{"project_user_id":1,"content":"Hi team!"}' \
      http://localhost:3000/api/conversations/1/messages
 ```
 
